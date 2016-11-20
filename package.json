@@ -6,7 +6,9 @@
   "scripts": {
     "lint": "eslint . --ext .js,.json",
     "fix": "eslint --fix . --ext .js,.json",
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "preversion": "git checkout master && git merge --no-ff develop -m 'Pull changes for release bump'",
+    "postversion": "git push && git push --tags && git checkout develop && git merge --no-ff master -m 'Sync Develop branch' && git push"
   },
   "repository": {
     "type": "git",

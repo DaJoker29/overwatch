@@ -1,0 +1,35 @@
+{
+  "name": "overwatch",
+  "version": "0.0.0",
+  "description": "A personalized monitoring service",
+  "main": "overwatch.js",
+  "scripts": {
+    "lint": "eslint . --ext .js,.json",
+    "fix": "eslint --fix . --ext .js,.json",
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "preversion": "git checkout master && git merge --no-ff develop -m 'Pull changes for release bump'",
+    "postversion": "git push && git push --tags && git checkout develop && git merge --no-ff master -m 'Sync Develop branch' && git push",
+    "install": "ln -si ../../scripts/pre-commit.sh .git/hooks/pre-commit"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/DaJoker29/overwatch.git"
+  },
+  "author": "Dewitt Buckingham (http://zerodaedalus.com)",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/DaJoker29/overwatch/issues"
+  },
+  "homepage": "https://github.com/DaJoker29/overwatch#readme",
+  "dependencies": {
+    "broken-link-checker": "0.7.3",
+    "eslint": "3.10.2",
+    "eslint-config-airbnb": "13.0.0",
+    "eslint-plugin-import": "2.2.0",
+    "eslint-plugin-json": "1.2.0",
+    "eslint-plugin-jsx-a11y": "2.2.3",
+    "eslint-plugin-react": "6.7.1",
+    "mongoose": "4.6.8",
+    "node-schedule": "1.2.0"
+  }
+}

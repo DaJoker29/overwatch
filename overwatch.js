@@ -8,7 +8,7 @@ const interval = '*/15 * * * *';
  */
 
 console.log('launching overwatch...');
-schedule.scheduleJob(interval, monitor.run);
+// schedule.scheduleJob(interval, monitor.run);
 
 /**
  * Handle uncaught exceptions

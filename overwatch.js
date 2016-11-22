@@ -4,7 +4,7 @@ const monitor = require('./lib/monitor.js');
 
 const interval = {
   service: process.env.SERVICE_INTERVAL || '*/15 * * * *',
-  site: process.env.SITE_INTERVAL || '1 * * * *',
+  site: process.env.SITE_INTERVAL || '*/30 * * * *',
 };
 
 const transporter = nodemailer.createTransport({

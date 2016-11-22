@@ -1,0 +1,15 @@
+{
+  "apps": [{
+    "name": "overwatch",
+    "script": "./overwatch.js",
+    "watch": false,
+    "env": {
+      "NODE_ENV": "production",
+      "MAILGUN_USER": "",
+      "MAILGUN_PASS": "",
+      "TO_ADDRESS": [""],
+      "FROM_ADDRESS": ""
+    },
+    "log_date_format": "YYYY-MM-DD HH:mm:ss.SSSS Z"
+  }]
+}

@@ -1,5 +1,4 @@
 const schedule = require('node-schedule');
-const fs = require('fs');
 const nodemailer = require('nodemailer');
 const monitor = require('./lib/monitor.js');
 
@@ -16,23 +15,20 @@ const transporter = nodemailer.createTransport({
   },
 });
 
-const metadata = JSON.parse(fs.readFileSync('package.json', 'utf8'));
-
-
 /**
  * Overwatch - Enhanced Monitoring
  * @module Overwatch
  */
 
-console.log('launching overwatch...');
+console.log('launching Overwatch...');
 
 // Run service checks every 30 minutes
-const services = schedule.scheduleJob(interval.service, () => {
+schedule.scheduleJob(interval.service, () => {
   monitor.serviceChecks(handleCheck);
 });
 
 // Run website checks once an hour
-const sites = schedule.scheduleJob(interval.site, () => {
+schedule.scheduleJob(interval.site, () => {
   monitor.siteChecks(handleCheck);
 });
 
@@ -42,8 +38,7 @@ function handleCheck(err, changes) {
   }
 
   if (changes) {
-    const message = buildMsg(changes);
-    sendMsg(message);
+    sendMsg(buildMsg(changes));
   }
 }
 
@@ -51,7 +46,7 @@ function sendMsg(msg) {
   const mail = {
     from: process.env.FROM_ADDRESS || '',
     to: process.env.TO_ADDRESS || '',
-    subject: `${metadata.name.toUppercase()} alert`,
+    subject: 'Overwatch alert',
     text: msg,
     html: `<pre>${msg}</pre>`,
   };

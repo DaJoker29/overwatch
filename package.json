@@ -1,6 +1,6 @@
 {
   "name": "overwatch",
-  "version": "0.0.1",
+  "version": "0.1.0",
   "description": "A personalized monitoring service",
   "main": "overwatch.js",
   "scripts": {

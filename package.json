@@ -9,7 +9,9 @@
     "test": "echo \"Error: no test specified\" && exit 1",
     "preversion": "git checkout master && git merge --no-ff develop -m 'Pull changes for release bump'",
     "postversion": "git push && git push --tags && git checkout develop && git merge --no-ff master -m 'Sync Develop branch' && git push",
-    "install": "ln -si ../../scripts/pre-commit.sh .git/hooks/pre-commit"
+    "install": "ln -si ../../scripts/pre-commit.sh .git/hooks/pre-commit",
+    "start": "pm2 start process.json",
+    "dev": "nodemon overwatch.js --config nodemon.json"
   },
   "repository": {
     "type": "git",
@@ -31,6 +33,7 @@
     "eslint-plugin-react": "6.7.1",
     "lodash": "4.17.2",
     "mongoose": "4.6.8",
-    "node-schedule": "1.2.0"
+    "node-schedule": "1.2.0",
+    "nodemon": "1.11.0"
   }
 }

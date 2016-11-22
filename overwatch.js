@@ -8,7 +8,7 @@ const interval = {
   site: process.env.SITE_INTERVAL || '1 * * * *',
 };
 
-const transporter = nodemailer.createTransporter({
+const transporter = nodemailer.createTransport({
   service: 'Mailgun',
   auth: {
     user: process.env.MAILGUN_USER || '',

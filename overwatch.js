@@ -1,10 +1,22 @@
 const schedule = require('node-schedule');
+const fs = require('fs');
+const nodemailer = require('nodemailer');
 const monitor = require('./lib/monitor.js');
 
 const interval = {
   service: process.env.SERVICE_INTERVAL || '*/15 * * * *',
   site: process.env.SITE_INTERVAL || '1 * * * *',
 };
+
+const transporter = nodemailer.createTransporter({
+  service: 'Mailgun',
+  auth: {
+    user: process.env.MAILGUN_USER || '',
+    pass: process.env.MAILGUN_PASS || '',
+  },
+});
+
+const metadata = JSON.parse(fs.readFileSync('package.json', 'utf8'));
 
 
 /**
@@ -31,8 +43,26 @@ function handleCheck(err, changes) {
 
   if (changes) {
     const message = buildMsg(changes);
-    console.log(message);
+    sendMsg(message);
   }
+}
+
+function sendMsg(msg) {
+  const mail = {
+    from: process.env.FROM_ADDRESS || '',
+    to: process.env.TO_ADDRESS || '',
+    subject: `${metadata.name.toUppercase()} alert`,
+    text: msg,
+    html: `<pre>${msg}</pre>`,
+  };
+
+  transporter.sendMail(mail, (err, info) => {
+    if (err) {
+      console.log(err);
+    } else {
+      console.log(`Alert sent: ${info.response}`);
+    }
+  });
 }
 
 function buildMsg(changes) {

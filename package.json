@@ -11,7 +11,9 @@
     "postversion": "git push && git push --tags && git checkout develop && git merge --no-ff master -m 'Sync Develop branch' && git push",
     "install": "ln -si ../../scripts/pre-commit.sh .git/hooks/pre-commit",
     "start": "pm2 start process.json",
-    "dev": "nodemon overwatch.js --config nodemon.json"
+    "dev": "nodemon overwatch.js --config nodemon.json",
+    "dist": "./scripts/upgrade.sh",
+    "reload": "./scripts/reload-server.sh"
   },
   "repository": {
     "type": "git",

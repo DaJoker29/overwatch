@@ -39,3 +39,4 @@ jspm_packages
 # My own ignores
 targets.json
 process.json
+private.json

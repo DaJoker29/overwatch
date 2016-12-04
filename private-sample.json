@@ -1,0 +1,7 @@
+{
+  "MAILGUN_USER": "",
+  "MAILGUN_PASS": "",
+  "TO_ADDRESS": [],
+  "FROM_ADDRESS": "",
+  "URLS": []
+}
